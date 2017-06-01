@@ -257,7 +257,7 @@ exports.randomcheck = function (req, res, next) {
         score = ++req.session.score; //actualizo la puntiacion de la sesion
     else {
         req.session.score = 0; // actualizo la variable score de la sesion
-        score = 0;// variable que le paso a la página
+        //score = 0;// variable que le paso a la página
         req.session.questions = [-1];
     }
  

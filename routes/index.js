@@ -8,15 +8,14 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-//----LO MIO----
-// Pagina de juego
-router.get('/quizzes/randomplay', function(req, res, next) {
-    res.render('play');
-});
-
 // Pagina de creditos
 router.get('/author', function(req, res, next) {
     res.render('author');
+});
+
+// Pagina de creditos
+router.get('/help', function(req, res, next) {
+    res.render('help');
 });
 
 
@@ -40,7 +39,7 @@ router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 
 //Definicion de rutas de /randomplay
 router.get('/quizzes/randomplay',  quizController.randomplay);
-router.get('/quizzes/:quizId(\\d+)/randomcheck', quizController.randomcheck);
+router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
 
 
 
