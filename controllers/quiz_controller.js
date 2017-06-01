@@ -187,3 +187,84 @@ exports.check = function (req, res, next) {
         answer: answer
     });
 };
+
+//----LO MIO----
+
+// GET /quizzes/randomplay
+exports.randomplay = function (req, res, next) {
+ 
+    var score = req.session.score;
+    var questions = req.session.questions;
+ 
+    if (!score)
+        score = 0;
+ 
+    if (!questions)
+        questions = [-1];
+ 
+    models.Quiz.count() //busqueda de questions
+    .then(function(count) {
+ 
+        return models.Quiz.findAll({
+            where: { id: { $notIn: questions } }
+        })
+ 
+    })
+    .then(function(quizzes) { //devuelve una question al azar
+ 
+        return (quizzes && quizzes.length > 0) ? quizzes[parseInt(Math.random() * quizzes.length)] : null; //condicion ? verdadera : falsa
+    })
+    .then(function(quiz) {
+        if (quiz) {
+            questions.push(quiz.id);
+            req.session.questions = questions;
+            res.render('quizzes/random_play', {
+                quiz: quiz,
+                score: score
+            });
+        } else {
+            req.session.score = 0;
+            req.session.questions = [-1];
+            res.render('quizzes/random_nomore', {
+                score: score
+            });
+        }
+ 
+    })
+    .catch(function(error) {
+        req.flash('error', 'Error al cargar el Quiz: ' + error.message);
+        next(error);
+    });
+};
+ 
+// GET /quizzes/randomcheck/:quizId
+exports.randomcheck = function (req, res, next) {
+ 
+    var score = req.session.score;
+    var questions = req.session.questions;
+ 
+    if (!score)
+        score = 0;
+ 
+    if (!questions)
+        questions = [-1];
+ 
+    var answer = req.query.answer || "";
+ 
+    var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
+ 
+    if (result)
+        score = ++req.session.score; //actualizo la puntiacion de la sesion
+    else {
+        req.session.score = 0; // actualizo la variable score de la sesion
+        score = 0;// variable que le paso a la página
+        req.session.questions = [-1];
+    }
+ 
+    res.render('quizzes/random_result', {
+        score: score,
+        result: result,
+        answer: answer
+    });
+ 
+};
