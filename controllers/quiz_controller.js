@@ -254,10 +254,10 @@ exports.randomcheck = function (req, res, next) {
     var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
  
     if (result)
-        score = ++req.session.score; //actualizo la puntiacion de la sesion
+        req.session.score = ++score; //actualizo la puntiacion de la sesion
     else {
         req.session.score = 0; // actualizo la variable score de la sesion
-        //score = 0;// variable que le paso a la página
+        score = 0;// variable que le paso a la página
         req.session.questions = [-1];
     }
  
