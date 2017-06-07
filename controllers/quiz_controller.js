@@ -460,7 +460,7 @@ exports.randomcheck = function (req, res, next) {
     var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
  
     if (result)
-        req.session.score = ++score; //actualizo la puntiacion de la sesion
+        ++req.session.score //= ++score; //actualizo la puntiacion de la sesion
     else {
         req.session.score = 0; // actualizo la variable score de la sesion
         //score = 0;// variable que le paso a la página
@@ -468,7 +468,7 @@ exports.randomcheck = function (req, res, next) {
     }
  
     res.render('quizzes/random_result', {
-        score: score,
+        score: req.session.score,
         result: result,
         answer: answer
     });
