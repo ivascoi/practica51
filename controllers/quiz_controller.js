@@ -445,8 +445,29 @@ exports.randomplay = function (req, res, next) {
  
 // GET /quizzes/randomcheck/:quizId
 exports.randomcheck = function (req, res, next) {
+
+    if (!req.session.score) req.session.score = 0;
+    if (!req.session.questions) req.session.questions = [-1];
+
+    var answer = req.query.answer || "";
+
+    var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
+
+    if (result)
+        ++req.session.score;
+    else {
+        req.session.score = 0;
+        req.session.questions = [-1];
+    }
+
+    res.render('quizzes/random_result', {
+        score: req.session.score,
+        result: result,
+        answer: answer
+    });
+
  
-    var score = req.session.score;
+    /*var score = req.session.score;
     var questions = req.session.questions;
  
     if (!score)
@@ -471,6 +492,6 @@ exports.randomcheck = function (req, res, next) {
         score: req.session.score,
         result: result,
         answer: answer
-    });
+    });*/
  
 };
