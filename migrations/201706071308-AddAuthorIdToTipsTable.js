@@ -2,17 +2,14 @@
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        return queryInterface.addTable(
+        return queryInterface.addColumn(
             'Tips',
-            {
-              AuthorId:{
-                type: Sequelize.INTEGER
-              }
-            }
+            'AuthorId',
+            {type: Sequelize.INTEGER}
         );
     },
 
     down: function (queryInterface, Sequelize) {
-        return queryInterface.removeTable('Tips', 'AuthorId');
+        return queryInterface.removeColumn('Tips', 'AuthorId');
     }
 };

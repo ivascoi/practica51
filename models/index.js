@@ -74,7 +74,7 @@ Tip.belongsTo(User, {as: 'Author', foreingKey: 'AuthorId'});
 //   Un Usuario tiene muchos quizzes favoritos.
 //   Un quiz tiene muchos usuarios que lo han marcado como favorito.
 //   Un quiz tiene muchos fans (los usuarios que lo han marcado como favorito)
-User.hasMany(Favourite);
+/*User.hasMany(Favourite);
 Favourite.belongsTo(User);
 
 Quiz.hasMany(Favourite);
@@ -83,12 +83,12 @@ Favourite.belongsTo(Quiz);
 Quiz.belongsToMany(User, {
     as: 'Fans',
     through: 'Favourites'
-});
+});*/
 
 
 
 exports.Quiz = Quiz; // exportar definición de tabla Quiz
 exports.Tip = Tip;   // exportar definición de tabla Tips
 exports.User = User; // exportar definición de tabla Users
-exports.Attachment = Attachment; // exportar definición de tabla Attachments
-exports.Favourite = Favourite; // exportar definición de tabla Favourites
+//exports.Attachment = Attachment; // exportar definición de tabla Attachments
+//exports.Favourite = Favourite; // exportar definición de tabla Favourites
