@@ -286,8 +286,8 @@ exports.randomplay = function (req, res, next) {
     var score = req.session.score;
     var questions = req.session.questions;
  
-    /*if (!score)
-        score = 0;*/
+    if (!score)
+        score = 0;
  
     if (!questions)
         questions = [-1];
@@ -333,8 +333,8 @@ exports.randomcheck = function (req, res, next) {
     var score = req.session.score;
     var questions = req.session.questions;
  
-    /*if (!score)
-        score = 0;*/
+    if (!score)
+        score = 0;
  
     if (!questions)
         questions = [-1];
@@ -344,17 +344,18 @@ exports.randomcheck = function (req, res, next) {
     var result = answer.toLowerCase().trim() === req.quiz.answer.toLowerCase().trim();
  
     if (result)
-        ++req.session.score //= ++score; //actualizo la puntiacion de la sesion
+        req.session.score = ++score; //actualizo la puntiacion de la sesion
     else {
         req.session.score = 0; // actualizo la variable score de la sesion
-        //score = 0;// variable que le paso a la página
+        score = 0;// variable que le paso a la página
         req.session.questions = [-1];
     }
  
     res.render('quizzes/random_result', {
-        score: req.session.score,
+        score: score,
         result: result,
         answer: answer
     });
+
  
 };
