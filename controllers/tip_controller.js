@@ -47,7 +47,7 @@ exports.create = function (req, res, next) {
     .then(function (tip) {
         req.flash('success', 'Pista creado con éxito.');
 
-        res.redirect("back");
+        //res.redirect("back");
         res.redirect('/quizzes/' + req.quiz.id);
     })
     .catch(Sequelize.ValidationError, function (error) {
