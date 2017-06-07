@@ -65,6 +65,10 @@ Quiz.belongsTo(User, {as: 'Author', foreignKey: 'AuthorId'});
 Attachment.belongsTo(Quiz);
 Quiz.hasOne(Attachment);
 
+// Relacion 1 a N entre User y tips
+User.hasMany(Tip, {foreignKey: 'AuthorId'});
+Tip.belongsTo(User, {as: 'Author', foreingKey: 'AuthorId'});
+
 // Favoritos:
 //
 //   Un Usuario tiene muchos quizzes favoritos.

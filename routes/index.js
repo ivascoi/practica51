@@ -50,18 +50,12 @@ router.get('/author', function (req, res, next) {
     res.render('author');
 });
 
-<<<<<<< HEAD
+
 // Pagina de ayuda
 router.get('/help', function (req, res, next) {
     res.render('help');
 });
-=======
-// Pagina de creditos
-router.get('/help', function(req, res, next) {
-    res.render('help');
-});
 
->>>>>>> practica52
 
 // Autoload de rutas que usen :quizId
 router.param('quizId', quizController.load);
@@ -104,70 +98,6 @@ router.get('/users/:userId(\\d+)/quizzes', quizController.index);     // ver las
 
 
 // Definición de rutas de /quizzes
-<<<<<<< HEAD
-router.get('/quizzes.:format?',
-    quizController.index);
-router.get('/quizzes/:quizId(\\d+).:format?',
-    quizController.show);
-router.get('/quizzes/new',
-    sessionController.loginRequired,
-    quizController.new);
-router.post('/quizzes',
-    sessionController.loginRequired,
-    upload.single('image'),
-    quizController.create);
-router.get('/quizzes/:quizId(\\d+)/edit',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    quizController.edit);
-router.put('/quizzes/:quizId(\\d+)',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    upload.single('image'),
-    quizController.update);
-router.delete('/quizzes/:quizId(\\d+)',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    quizController.destroy);
-
-router.get('/quizzes/:quizId(\\d+)/play',
-    quizController.play);
-router.get('/quizzes/:quizId(\\d+)/check',
-    quizController.check);
-
-
-router.get('/quizzes/:quizId(\\d+)/tips/new',
-    sessionController.loginRequired,
-    tipController.new);
-router.post('/quizzes/:quizId(\\d+)/tips',
-    sessionController.loginRequired,
-    tipController.create);
-router.put('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)/accept',
-    sessionController.loginRequired,
-    quizController.adminOrAuthorRequired,
-    tipController.accept);
-router.delete('/quizzes/:quizId(\\d+)/tips/:tipId(\\d+)',
-    sessionController.loginRequired,
-    tipController.destroy);
-
-
-// Rutas de Favoritos
-router.get('/users/:userId(\\d+)/favourites',
-    sessionController.loginRequired,
-    sessionController.myselfRequired,
-    favouriteController.index);
-
-router.put('/users/:userId(\\d+)/favourites/:quizId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    favouriteController.add);
-
-router.delete('/users/:userId(\\d+)/favourites/:quizId(\\d+)',
-    sessionController.loginRequired,
-    sessionController.adminOrMyselfRequired,
-    favouriteController.del);
-
-=======
 router.get('/quizzes',                     quizController.index);
 router.get('/quizzes/:quizId(\\d+)',       quizController.show);
 router.get('/quizzes/new',                 quizController.new);
@@ -184,7 +114,7 @@ router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 //Definicion de rutas de /randomplay
 router.get('/quizzes/randomplay',  quizController.randomplay);
 router.get('/quizzes/randomcheck/:quizId(\\d+)', quizController.randomcheck);
->>>>>>> practica52
+
 
 
 
