@@ -13,6 +13,6 @@ module.exports = {
     },
 
     down: function (queryInterface, Sequelize) {
-        //return queryInterface.removeColumn('Tips', 'AuthorId');
+        return queryInterface.removeTable('Tips', 'AuthorId');
     }
 };
