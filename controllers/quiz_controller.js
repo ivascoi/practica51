@@ -329,6 +329,11 @@ exports.randomplay = function (req, res, next) {
  
 // GET /quizzes/randomcheck/:quizId
 exports.randomcheck = function (req, res, next) {
+
+    if(req.session.checkit || isNaN(req.session.score) ){
+        req.session.score = 0;
+        req.session.index =[req.quiz.id];
+    }
  
     var score = req.session.score;
     var questions = req.session.questions;
