@@ -15,7 +15,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); //viewengine monta los ejs
 
 
 // En produccion (Heroku) redirijo las peticiones http a https.
